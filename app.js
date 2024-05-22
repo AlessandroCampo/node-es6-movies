@@ -26,8 +26,6 @@ class Cart {
     }
 
 
-
-
     get mediaList() {
         return this.#mediaList;
     }
@@ -43,13 +41,13 @@ class Movie {
     #rating
     #type
 
-    constructor({ title, year, genre, rating, type }) {
+    constructor({ title, year, genre, rating, type, price }) {
         this.#title = title
         this.#year = year
         this.#genre = genre
         this.#rating = rating
         this.#type = type
-        this.price = 3.99
+        this.price = this.price || 3.99
     }
 
     getInformations() {
