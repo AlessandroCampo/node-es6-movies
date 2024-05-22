@@ -2,6 +2,7 @@ const media = require('./media');
 
 
 class Movie {
+
     constructor({ title, year, genre, rating, type }) {
         this.title = title
         this.year = year
@@ -16,6 +17,7 @@ class Movie {
 }
 
 class TvShow extends Movie {
+    #seasons
     constructor({ title, year, genre, rating, type, seasons }) {
         super({ title, year, genre, rating, type })
         this.seasons = seasons
@@ -48,15 +50,18 @@ const ratingAverageGivenGenre = (arr, genre) => {
     return Math.round(ratingAverage)
 }
 
-//I Can prod do this destructuring
+
 const getAllMediasGenres = (arr) => {
-    const foundGenres = []
-    arr.forEach(el => {
-        if (!foundGenres.includes(el.genre)) {
-            foundGenres.push(el.genre)
+    const arrOfGenres = arr.reduce((acc, { genre }) => {
+        if (!acc.includes(genre)) {
+            acc.push(genre)
         }
-    })
-    return foundGenres
+        return acc
+    }, [])
+
+    return arrOfGenres
+
+
 }
 
 
