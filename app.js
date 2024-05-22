@@ -189,6 +189,19 @@ class TvShow extends Movie {
     get seasons() {
         return this.#seasons
     }
+
+    set seasons(seasons) {
+        if (typeof seasons !== 'number') {
+            throw new Error('Invalid data type, expected: number');
+        }
+        if (seasons > 70) {
+            throw new Error("Damn, this show is hella long, season limit is 70");
+        }
+        if (seasons < 0) {
+            throw new Error("Error: expecting positive value for seasons");
+        }
+        this.#seasons = seasons
+    }
 }
 
 const media = require('./media');
@@ -274,10 +287,10 @@ function fillChart() {
 fillChart()
 console.log(ratingAverageGivenGenre(arrayOfClassInstances, 'Crime'));
 console.log(getAllMediasGenres(arrayOfClassInstances))
-console.log(getMediasInfosGivenGenre(arrayOfClassInstances, 'Crime'))
+console.log(getMediasInfosGivenGenre(arrayOfClassInstances, 'Comedy'))
 
 
 cart.removeItem(cart.mediaList[0])
 console.log(cart.mediaList)
 console.log(cart.getTotalPrice())
-// console.log(himym.rating = -1)
+// console.log(himym.rating = 11)
