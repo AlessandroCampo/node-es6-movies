@@ -31,4 +31,16 @@ const arrayOfClassInstances = media.map(el => {
     return el.type == 'movie' ? new Movie({ ...el }) : new TvShow({ ...el })
 })
 
-console.log(arrayOfClassInstances);
+const ratingAverageGivenGenre = (arr, genre) => {
+    const filteredArray = arr.filter(media => {
+        return media.genre == genre
+    })
+    console.log(filteredArray)
+    const ratingAverage = filteredArray.reduce((acc, media, index, array) => {
+        return acc + media.rating / array.length;
+    }, 0)
+
+    return Math.round(ratingAverage)
+}
+
+console.log(ratingAverageGivenGenre(media, 'Crime'));
