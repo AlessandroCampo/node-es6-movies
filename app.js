@@ -3,11 +3,11 @@ const media = require('./media');
 
 class Movie {
     constructor({ title, year, genre, rating, type }) {
-        this.title = title,
-            this.year = year,
-            this.genre = genre,
-            this.rating = rating,
-            this.type = type
+        this.title = title
+        this.year = year
+        this.genre = genre
+        this.rating = rating
+        this.type = type
     }
 
     getInformations() {
