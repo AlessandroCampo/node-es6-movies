@@ -3,14 +3,14 @@
 class Cart {
     #mediaList = []
     addItem(item) {
-        if (this.#mediaList.includes(item)) {
+        if (this.#mediaList.some(movie => movie.title == item.title)) {
             return `${item.getProperty('title')} is already in the chart`
         }
         this.#mediaList.push(item);
     }
 
     removeItem(item) {
-        if (!this.#mediaList.includes(item)) {
+        if (!this.#mediaList.some(movie => movie.title == item.title)) {
             return `${item.getProperty('title')} is not in your chart`
         }
         const index = this.#mediaList.indexOf(item)
@@ -238,18 +238,17 @@ const ratingAverageGivenGenre = (arr, genre) => {
 
 //NOTE - Dunno if I can use  this method with private property
 
-// const getAllMediasGenres = (arr) => {
-//     const arrOfGenres = arr.reduce((acc, { genre }) => {
-//         if (!acc.includes(genre)) {
-//             acc.push(genre)
-//         }
-//         return acc
-//     }, [])
+const getAllMediasGenres = (arr) => {
+    const arrOfGenres = arr.reduce((acc, { genre }) => {
+        if (!acc.includes(genre)) {
+            acc.push(genre)
+        }
+        return acc
+    }, [])
 
-//     return arrOfGenres
+    return arrOfGenres
 
-
-// }
+}
 
 
 const getMediasInfosGivenGenre = (arr, genre) => {
@@ -260,16 +259,16 @@ const getMediasInfosGivenGenre = (arr, genre) => {
     return arrayOfInformations
 }
 
-const getAllMediasGenres = (arr) => {
-    const allGenres = []
-    arr.forEach(media => {
-        const mediaGenre = media.getProperty('genre')
-        if (!allGenres.includes(mediaGenre)) {
-            allGenres.push(mediaGenre)
-        }
-    })
-    return allGenres
-}
+// const getAllMediasGenres = (arr) => {
+//     const allGenres = []
+//     arr.forEach(media => {
+//         const mediaGenre = media.getProperty('genre')
+//         if (!allGenres.includes(mediaGenre)) {
+//             allGenres.push(mediaGenre)
+//         }
+//     })
+//     return allGenres
+// }
 
 function fillChart() {
     const shuffledSilcedArray = arrayOfClassInstances.sort((a, b) => {
